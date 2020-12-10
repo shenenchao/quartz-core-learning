@@ -92,8 +92,7 @@ CREATE TABLE qrtz_simprop_triggers(
     BOOL_PROP_1 VARCHAR(1) NULL,
     BOOL_PROP_2 VARCHAR(1) NULL,
     PRIMARY KEY (sched_name,TRIGGER_NAME,TRIGGER_GROUP),
-    FOREIGN KEY (sched_name,TRIGGER_NAME,TRIGGER_GROUP) 
-    REFERENCES QRTZ_TRIGGERS(sched_name,TRIGGER_NAME,TRIGGER_GROUP)
+    FOREIGN KEY (sched_name,trigger_name,trigger_group) REFERENCES qrtz_triggers(sched_name,trigger_name,trigger_group)
 );
 
 create table qrtz_blob_triggers(
