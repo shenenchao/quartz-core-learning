@@ -90,7 +90,7 @@
                                         <%-- <td class='center' style="width: auto;">${var.jobObject}</td> --%>
                                         <%-- <td class='center' style="width: auto;">${var.count}</td> --%>
                                         <td class='center' style="width: auto;">
-                                            <%-- <a class="btn btn-minier btn-info" onclick="triggerJob('${var.jobName}','${var.jobGroup}');"><i class="icon-edit"></i>运行</a> --%>
+                                            <a class="btn btn-minier btn-info" onclick="triggerJob('${var.jobName}','${var.jobGroup}');"><i class="icon-edit"></i>运行</a>
                                             <a class="btn btn-minier btn-success" onclick="edit('${var.jobName}','${var.jobGroup}');"><i class="icon-edit"></i>编辑</a><br>
                                             <a class="btn btn-minier btn-warning" onclick="pauseJob('${var.jobName}','${var.jobGroup}');"><i class="icon-edit"></i>暂停</a>
                                             <a class="btn btn-minier btn-purple" onclick="resumeJob('${var.jobName}','${var.jobGroup}');"><i class="icon-edit"></i>恢复</a>
@@ -121,7 +121,7 @@
   	function edit(jobName,jobGroup){
   		window.location.href = url + "/quartz/toEdit?jobName="+jobName+"&jobGroup="+jobGroup;
   	}
-  	
+
   //暂停任务
   	function pauseJob(jobName,jobGroupName){
   		$.post(url + "/quartz/pauseJob",{"jobName":jobName,"jobGroupName":jobGroupName},function(data){
@@ -155,16 +155,16 @@
   		});
   	}
   	
-  	/* //执行任务
-  	function triggerJob(a,b){
-  		var url = "triggerJob";
-  		var d = {jobName:a,jobGroupName:b};
-  		$.post(url,d,function(data){
-  			if(data.status = 'ok'){
-  				window.location.href = window.location.href;
-  			}
-  		});
-  	} */
+     //执行任务
+  	function triggerJob(jobName,jobGroupName){
+        $.post(url + "/quartz/triggerJob",{"jobName":jobName,"jobGroupName":jobGroupName,}, function(data){
+            if(data.status = 'success'){
+                window.location.href = window.location.href;
+            }else{
+                alert("操作失败，请刷新重新！");
+            }
+        });
+  	}
   </script>
   </body>
 </html>

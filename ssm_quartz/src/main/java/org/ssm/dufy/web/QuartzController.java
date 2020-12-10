@@ -189,6 +189,21 @@ public class QuartzController {
 		
 		return json.toJSONString();
 	}
+
+	@RequestMapping(value="/triggerJob",method=RequestMethod.POST)
+	@ResponseBody
+	public String triggerJob(@RequestParam("jobName") String jobName,@RequestParam("jobGroupName") String jobGroupName){
+		JSONObject json = new JSONObject();
+
+		if(StringUtils.isEmpty(jobName) || StringUtils.isEmpty(jobGroupName)){
+			json.put("status", "wrong");
+		}else{
+			quartzService.triggerJob(jobName, jobGroupName);
+			json.put("status", "success");
+		}
+
+		return json.toJSONString();
+	}
 	
 	@RequestMapping(value="/deleteJob",method=RequestMethod.POST)
 	@ResponseBody

@@ -62,7 +62,14 @@ public interface QuartzService {
 	 * @return
 	 */
 	public void resumeJob(String jobName,String jobGroupName);
-	
+
+	/**
+	 * 立即执行指定的任务
+	 * @param jobName 任务名称
+	 * @param jobGroupName 任务组名称
+	 * @return
+	 */
+	public void triggerJob(String jobName,String jobGroupName);
 	/**
 	 * 删除指定组任务
 	 * @param jobName 作业名称

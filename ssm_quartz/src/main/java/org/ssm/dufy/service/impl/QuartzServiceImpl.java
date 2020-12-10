@@ -166,5 +166,12 @@ public class QuartzServiceImpl implements QuartzService{
 		}
 	}
 
-	
+	@Override
+	public void triggerJob(String jobName, String jobGroupName) {
+		try {
+			quartzScheduler.triggerJob(JobKey.jobKey(jobName, jobGroupName));
+		} catch (SchedulerException e) {
+			e.printStackTrace();
+		}
+	}
 }
